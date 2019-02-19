@@ -1,0 +1,6 @@
+temperature;8
+ressenti;6
+humiditee;55
+ventvitesse;30
+ventdirection;90
+ensoleillement;25
