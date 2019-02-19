@@ -36,7 +36,7 @@ public class Main extends Application {
 	
 	/**
 	 * Supprime tout les fichiers contenus dans le dossier passé en argument
-	 * @param emplacement
+	 * @param emplacement du dossier contenant les fichiers à supprimer
 	 */
 	private static void nettoyage(String emplacement){
 	  File path = new File(emplacement);
