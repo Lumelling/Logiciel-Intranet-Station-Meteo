@@ -54,6 +54,14 @@ public class Date {
 	 */
 	public void estValide() throws ErreurDateInvalide{
 
+		if (this.mois < 1 || this.mois > 12) {
+			throw new ErreurDateInvalide();
+		}
+		
+		if(this.annee < 0) {
+			throw new ErreurDateInvalide();
+		}
+		
 	    switch (this.mois){
 	    case 4: 
 	    case 6:  

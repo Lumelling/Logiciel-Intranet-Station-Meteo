@@ -316,7 +316,7 @@ public class Donnees {
 	 * @return La direction sous la forme d'un string sinon "erreur"
 	 */
 	private static String convertirDirection(int directionVent) {
-		String directionVentString = "erreur";
+		String directionVentString = "Erreur";
 		
 		if((directionVent <= 360 && directionVent > 315) || (directionVent >= 0 && directionVent <= 45)) {
 			directionVentString = "Nord";
