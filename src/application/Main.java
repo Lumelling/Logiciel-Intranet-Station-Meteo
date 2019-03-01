@@ -26,6 +26,8 @@ public class Main extends Application {
 			Scene scene = new Scene(root,600,400);
 			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
 			primaryStage.setTitle("Logiciel Météo intranet MJC Rodez");
+			primaryStage.setResizable(false);
+			primaryStage.sizeToScene();
 			primaryStage.getIcons().add(new Image("file:logo_mjc.png"));
 			primaryStage.setScene(scene);
 			primaryStage.show();

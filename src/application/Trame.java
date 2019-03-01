@@ -24,6 +24,19 @@ public class Trame {
 	}
 	
 	/**
+	 * Télécharge le fichier pour une date donnée
+	 * @param date
+	 * @param horaire
+	 * @return le nom du fichier obtenu
+	 */
+	public static String getFichier(Date date) {
+		String nomFichier = getNomFichier(date);
+		telechargerFichier(nomFichier, date);
+		return "releves/" + nomFichier;
+	}
+	
+
+	/**
 	 * Télécharge le fichier contenant les données les plus récentes
 	 * @param date
 	 * @param horaire
@@ -47,6 +60,17 @@ public class Trame {
 	}
 	
 	/**
+	 * Crée le nom du fichier en fonction d'une date et d'une horaire
+	 * @param date
+	 * @param horaire
+	 * @return
+	 */
+	private static String getNomFichier(Date date) { 
+		String dateString = date.toString();
+		return "Releve" + dateString + ".txt";
+	}
+	
+	/**
 	 * Méthode qui contient le téléchargement du fichier grâce à l'url 
 	 */
 	private static void telechargerFichier() {
@@ -56,6 +80,25 @@ public class Trame {
 			website = new URL("http://www.meteo.mjcrodez.fr/pages/getInfoFic.php");
 			ReadableByteChannel rbc = Channels.newChannel(website.openStream());
 			FileOutputStream fos = new FileOutputStream("releves/Releve.txt"); 
+			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
+			fos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Méthode qui contient le téléchargement du fichier grâce à l'url pour une date dibbée
+	 * @param date 
+	 * @param horaire
+	 */
+	private static void telechargerFichier(String nomFichier, Date date) {
+	
+		URL website;
+		try {
+			website = new URL("http://www.meteo.mjcrodez.fr/pages/getInfoFic.php?date=" + date.toString());//?date=2018-12-01
+			ReadableByteChannel rbc = Channels.newChannel(website.openStream());
+			FileOutputStream fos = new FileOutputStream("releves/" + nomFichier); 
 			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
 			fos.close();
 		} catch (IOException e) {

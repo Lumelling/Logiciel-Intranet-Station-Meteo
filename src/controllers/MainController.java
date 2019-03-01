@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -66,7 +67,10 @@ public class MainController implements Initializable{
 			Scene scene = new Scene(root,600,400);
 			stage.setTitle("Logiciel Météo intranet MJC Rodez");
 			stage.getIcons().add(new Image("file:logo_mjc.png"));
+			stage.setResizable(false);
+			stage.sizeToScene();
 			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setScene(scene);
 			stage.show();
 			
@@ -84,7 +88,10 @@ public class MainController implements Initializable{
 			Scene scene = new Scene(root,600,400);
 			stage.setTitle("Logiciel Météo intranet MJC Rodez");
 			stage.getIcons().add(new Image("file:logo_mjc.png"));
+			stage.setResizable(false);
+			stage.sizeToScene();
 			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setScene(scene);
 			stage.show();
 			
@@ -101,7 +108,10 @@ public class MainController implements Initializable{
 			Scene scene = new Scene(root,600,400);
 			stage.setTitle("Logiciel Météo intranet MJC Rodez");
 			stage.getIcons().add(new Image("file:logo_mjc.png"));
+			stage.setResizable(false);
+			stage.sizeToScene();
 			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setScene(scene);
 			stage.show();
 			
@@ -118,7 +128,10 @@ public class MainController implements Initializable{
 			Scene scene = new Scene(root,600,400);
 			stage.setTitle("Logiciel Météo intranet MJC Rodez");
 			stage.getIcons().add(new Image("file:logo_mjc.png"));
+			stage.setResizable(false);
+			stage.sizeToScene();
 			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setScene(scene);
 			stage.show();
 			
@@ -134,7 +147,10 @@ public class MainController implements Initializable{
 			Scene scene = new Scene(root,600,400);
 			stage.setTitle("Logiciel Météo intranet MJC Rodez");
 			stage.getIcons().add(new Image("file:logo_mjc.png"));
+			stage.setResizable(false);
+			stage.sizeToScene();
 			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setScene(scene);
 			stage.show();
 			
@@ -151,7 +167,10 @@ public class MainController implements Initializable{
 			Scene scene = new Scene(root,600,400);
 			stage.setTitle("Logiciel Météo intranet MJC Rodez");
 			stage.getIcons().add(new Image("file:logo_mjc.png"));
+			stage.setResizable(false);
+			stage.sizeToScene();
 			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
+			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setScene(scene);
 			stage.show();
 			

@@ -53,28 +53,32 @@ public class Date {
 	 * @throws ErreurDateInvalide 
 	 */
 	public void estValide() throws ErreurDateInvalide{
+		
+		if(this.mois < 1 || this.mois > 12) {
+			throw new ErreurDateInvalide();
+		}
 
 	    switch (this.mois){
-	    case 4: 
-	    case 6:  
-	    case 9: 
-	    case 11:  
-		if (this.jour < 1 || this.jour > 30) {
-		    //mois a 30 jours
-		    throw new ErreurDateInvalide();
-		}
-		break;
-	    case 2:
-		if (this.jour < 1 || this.jour > 29) {
-		    //fevrier
-		    throw new ErreurDateInvalide();
-		}
-		break;
-	    default: 
-		if (this.jour < 1 || this.jour > 31) {
-		    //mois a 31 jours
-		throw new ErreurDateInvalide();
-		}
+		    case 4: 
+		    case 6:  
+		    case 9: 
+		    case 11:  
+			if (this.jour < 1 || this.jour > 30) {
+			    //mois a 30 jours
+			    throw new ErreurDateInvalide();
+			}
+			break;
+		    case 2:
+			if (this.jour < 1 || this.jour > 29) {
+			    //fevrier
+			    throw new ErreurDateInvalide();
+			}
+			break;
+		    default: 
+			if (this.jour < 1 || this.jour > 31) {
+			    //mois a 31 jours
+				throw new ErreurDateInvalide();
+			}
 	    }	
 	    //date ok
 	}

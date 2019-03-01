@@ -72,29 +72,44 @@ public class RechercherDateController implements Initializable{
 		
 		try {
 			Date date = new Date(Integer.parseInt(box_jour.getText()), Integer.parseInt(box_mois.getText()), Integer.parseInt(box_annee.getText()));
-			Horaire horaire = new Horaire(Integer.parseInt(box_heure.getText()), Integer.parseInt(box_minute.getText()));
+			Horaire horaire = null;
+			Donnees consultationRecherche;
+			
+			if(box_minute.getText() != null && !(box_minute.getText().isEmpty())) {
+				horaire = new Horaire(Integer.parseInt(box_heure.getText()), Integer.parseInt(box_minute.getText()));
+				
+			} else if(box_heure.getText() != null && !(box_heure.getText().isEmpty())) {
+
+				horaire = new Horaire(Integer.parseInt(box_heure.getText()), 0);
+			}
+
 			date.estValide();
-			horaire.estValide();
-			Donnees consultationRecherche = new Donnees(date, horaire);
+			if(horaire != null) {
+				horaire.estValide();
+				consultationRecherche = new Donnees(date, horaire);
+			} else {
+				consultationRecherche = new Donnees(date);
+			}
+			
 			if (consultationRecherche.getTemperature() == -9999) {
-				lbl_temperature.setText("Erreur");
+				lbl_temperature.setText("Pas de données  ");
 			} else {
 				lbl_temperature.setText(consultationRecherche.getTemperature() + "°C");
 			}
 			if (consultationRecherche.getHumidite() == -9999) {
-				lbl_humidite.setText("Erreur");
+				lbl_humidite.setText("Pas de données  ");
 			} else {
 				lbl_humidite.setText(consultationRecherche.getHumidite() + "%");
 			}
 			if (consultationRecherche.getVitesseVent() == -9999) {
-				lbl_vitessevent.setText("Erreur");
+				lbl_vitessevent.setText("Pas de données  ");
 			} else {
 				lbl_vitessevent.setText(consultationRecherche.getVitesseVent() + "km/h");
 			}
 			lbl_directionvent.setText(consultationRecherche.getDirectionVentString() +"");
 			
 			if (consultationRecherche.getTauxEnsoleillement() == -9999) {
-				lbl_ensoleillement.setText("Erreur");
+				lbl_ensoleillement.setText("Pas de données  ");
 			} else {
 				lbl_ensoleillement.setText(consultationRecherche.getTauxEnsoleillement() +"%");
 			}
@@ -103,7 +118,6 @@ public class RechercherDateController implements Initializable{
 			
 			
 		} catch (NumberFormatException | ErreurDateInvalide | ErreurHoraireInvalide erreur) {
-			
 			lbl_erreur.setVisible(true);
 			
 		}

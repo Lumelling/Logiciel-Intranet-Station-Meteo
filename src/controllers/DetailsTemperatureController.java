@@ -69,13 +69,27 @@ public class DetailsTemperatureController implements Initializable{
 
 		try {
 			Date date = new Date(Integer.parseInt(box_jour.getText()), Integer.parseInt(box_mois.getText()), Integer.parseInt(box_annee.getText()));
-			Horaire horaire = new Horaire(Integer.parseInt(box_heure.getText()), Integer.parseInt(box_minute.getText()));
+			Horaire horaire = null;
+			Donnees consultationRecherche;
+			
+			if(box_minute.getText() != null && !(box_minute.getText().isEmpty())) {
+				horaire = new Horaire(Integer.parseInt(box_heure.getText()), Integer.parseInt(box_minute.getText()));
+				
+			} else if(box_heure.getText() != null && !(box_heure.getText().isEmpty())) {
+
+				horaire = new Horaire(Integer.parseInt(box_heure.getText()), 0);
+			}
+
 			date.estValide();
-			horaire.estValide();
-			Donnees consultationRecherche = new Donnees(date, horaire);
+			if(horaire != null) {
+				horaire.estValide();
+				consultationRecherche = new Donnees(date, horaire);
+			} else {
+				consultationRecherche = new Donnees(date);
+			}
 
 			if (consultationRecherche.getTemperature() == -9999) {
-				lbl_temperature.setText("Erreur");
+				lbl_temperature.setText("Pas de données  ");
 			} else {
 				lbl_temperature.setText(consultationRecherche.getTemperature() + "°C");
 			}

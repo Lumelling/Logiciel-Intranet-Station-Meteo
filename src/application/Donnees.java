@@ -69,6 +69,83 @@ public class Donnees {
 		this.directionVentString = convertirDirection(this.directionVent); 
 	}
 	
+	/**
+	 * Constructeur qui va initialiser un objet Donnees sur l'horaire et la date passés en arguments
+	 * @param date
+	 * @param horaire
+	 */
+	public Donnees(Date date) {
+		this.nomFichier = Trame.getFichier(date);
+		this.temperature = recupererMoyenneTemperature(this.nomFichier);
+		this.humidite = recupererHumidite(this.nomFichier);
+		this.directionVent = recupererDirectionVent(this.nomFichier);
+		this.vitesseVent = recupererMoyenneVitesseVent(this.nomFichier);
+		this.tauxEnsoleillement = recupererEnsoleillement(this.nomFichier);
+		this.ressenti = recupererRessenti(this.nomFichier);
+		this.directionVentString = convertirDirection(this.directionVent); 
+	}
+	
+	/**
+	 * Récupère la valeur correspondant à la moyenne de la temperature sur une journée dans un fichier
+	 * @param nomFichier
+	 * @return la temperature sous forme d'int, ou -9999 si la température n'est pas trouvée
+	 */
+	private static int recupererMoyenneTemperature(String nomFichier) {
+		String ligne;
+		int temperature = -9999;
+		int tempMax = -9999;
+		int tempMin = -9999;
+		try {
+		    BufferedReader fichier = new BufferedReader(new FileReader(nomFichier));
+		    
+		    while ((ligne = fichier.readLine()) != null){
+		    	if(ligne.contains("tempmax")) {
+		    		tempMax = (int) Double.parseDouble(ligne.split(";")[1]);
+		    	}
+		    	if(ligne.contains("tempmin")) {
+		    		tempMin = (int) Double.parseDouble(ligne.split(";")[1]);
+		    	}
+		    }
+		    
+		    fichier.close();
+		} catch (IOException ex) {
+		    System.out.println("Problème accès fichier");
+		}
+		temperature = (tempMin + tempMax) / 2;
+		return temperature;
+	}
+	
+	/**
+	 * Récupère la valeur correspondant à la moyenne de la vitesse du vent sur une journée dans un fichier
+	 * @param nomFichier
+	 * @return la vitesse du vent sous forme d'int, ou -9999 si la vitesse du vent n'est pas trouvée
+	 */
+	private static int recupererMoyenneVitesseVent(String nomFichier) {
+		String ligne;
+		int vitesse = -9999;
+		int vitesseMax = -9999;
+		int vitesseMin = -9999;
+		try {
+		    BufferedReader fichier = new BufferedReader(new FileReader(nomFichier));
+		    
+		    while ((ligne = fichier.readLine()) != null){
+		    	if(ligne.contains("ventvitessemax")) {
+		    		vitesseMax = Integer.parseInt(ligne.split(";")[1]);
+		    	}
+		    	if(ligne.contains("ventvitessemin")) {
+		    		vitesseMin = Integer.parseInt(ligne.split(";")[1]);
+		    	}
+		    }
+		    
+		    fichier.close();
+		} catch (IOException ex) {
+		    System.out.println("Problème accès fichier");
+		}
+		vitesse = (vitesseMin + vitesseMax) / 2;
+		return vitesse;
+	}
+	
+	
 
 	/**
 	 * Retourne les températures de la journée
@@ -179,7 +256,7 @@ public class Donnees {
 		    
 		    while ((ligne = fichier.readLine()) != null){
 		    	if(ligne.contains("temperature")) {
-		    		temperature = Integer.parseInt(ligne.split(";")[1]);
+		    		temperature = (int ) Double.parseDouble(ligne.split(";")[1]);
 		    	}
 		    }
 		    
@@ -203,7 +280,7 @@ public class Donnees {
 		    
 		    while ((ligne = fichier.readLine()) != null){
 		    	if(ligne.contains("humidite")) {
-		    		humidite = Integer.parseInt(ligne.split(";")[1]);
+		    		humidite = (int) Double.parseDouble(ligne.split(";")[1]);
 		    	}
 		    }
 		    
@@ -275,7 +352,7 @@ public class Donnees {
 		    
 		    while ((ligne = fichier.readLine()) != null){
 		    	if(ligne.contains("ensoleillement")) {
-		    		ensoleillement = Integer.parseInt(ligne.split(";")[1]);
+		    		ensoleillement = (int) Double.parseDouble(ligne.split(";")[1]);
 		    	}
 		    }
 		    
@@ -316,7 +393,7 @@ public class Donnees {
 	 * @return La direction sous la forme d'un string sinon "erreur"
 	 */
 	private static String convertirDirection(int directionVent) {
-		String directionVentString = "erreur";
+		String directionVentString = "Pas de données  ";
 		
 		if((directionVent <= 360 && directionVent > 315) || (directionVent >= 0 && directionVent <= 45)) {
 			directionVentString = "Nord";
