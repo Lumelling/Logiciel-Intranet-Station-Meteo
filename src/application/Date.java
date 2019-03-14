@@ -44,7 +44,7 @@ public class Date {
 	 */
 	@Override
 	public String toString() {
-		return this.annee + "-" + this.mois + "-" + this.jour;
+		return this.jour + "-" + this.mois + "-" + this.annee;
 		
 	}
 	

@@ -39,6 +39,18 @@ public class Donnees {
 	/** Attribut contenant le taux d'ensoleillement */
 	private int tauxEnsoleillement;
 	
+	/** Attribut contenant le taux de pression atmopshérique */
+	private int pression;
+	
+	/** Attribut contenant la taux de CO2 */
+	private int co2;
+	
+	/** Attribut contenant l'état de pluie */
+	private int pluie;
+	
+	/** Attribut contenant l'état de la pluie sous forme litéralle */
+	private String pluieString;
+	
 	/**
 	 * Constructeur qui va initialiser un objet Donnees par défaut sur le dernier relevé disponible
 	 */
@@ -51,6 +63,10 @@ public class Donnees {
 		this.tauxEnsoleillement = recupererEnsoleillement(this.nomFichier);
 		this.ressenti = recupererRessenti(this.nomFichier);
 		this.directionVentString = convertirDirection(this.directionVent);
+		this.co2 = recupererCO2(this.nomFichier);
+		this.pluie = recupererPluie(this.nomFichier);
+		this.pluieString = convertirPluie(this.pluie);
+		this.pression = recupererPression(this.nomFichier);
 	}
 	
 	/**
@@ -67,6 +83,10 @@ public class Donnees {
 		this.tauxEnsoleillement = recupererEnsoleillement(this.nomFichier);
 		this.ressenti = recupererRessenti(this.nomFichier);
 		this.directionVentString = convertirDirection(this.directionVent); 
+		this.co2 = recupererCO2(this.nomFichier);
+		this.pluie = recupererPluie(this.nomFichier);
+		this.pluieString = convertirPluie(this.pluie);
+		this.pression = recupererPression(this.nomFichier);
 	}
 	
 	/**
@@ -83,6 +103,10 @@ public class Donnees {
 		this.tauxEnsoleillement = recupererEnsoleillement(this.nomFichier);
 		this.ressenti = recupererRessenti(this.nomFichier);
 		this.directionVentString = convertirDirection(this.directionVent); 
+		this.co2 = recupererCO2(this.nomFichier);
+		this.pluie = recupererPluie(this.nomFichier);
+		this.pluieString = convertirPluie(this.pluie);
+		this.pression = recupererPression(this.nomFichier);
 	}
 	
 	/**
@@ -169,6 +193,78 @@ public class Donnees {
 			
 		}
 		return temperature;
+	}
+	
+	/**
+	 * Retourne les co2 de la journée
+	 * @return tableau d'entiers contenant les co2 de la journée, i correspondant à l'heure correspondante
+	 */
+	public static int[] getCO2Journee() {
+
+		
+		Calendar cal = Calendar.getInstance();
+		int jourCourant = cal.get(Calendar.DAY_OF_MONTH);
+		int moisCourant = cal.get(Calendar.MONTH)+1;
+		int anneeCourante = cal.get(Calendar.YEAR);
+		int heureCourante = cal.get(Calendar.HOUR_OF_DAY);
+		int[] co2 = new int[heureCourante+1];
+		for(int i = heureCourante; i >= 0; i--) {
+			Horaire horaire = new Horaire(heureCourante, 0);
+			Date date = new Date(jourCourant,moisCourant, anneeCourante);
+			Donnees donnees = new Donnees(date, horaire);
+			co2[i] = donnees.getCO2();
+			heureCourante--;
+			
+		}
+		return co2;
+	}
+	
+	/**
+	 * Retourne les états de pluie de la journée
+	 * @return tableau d'entiers contenant les états de pluie de la journée, i correspondant à l'heure correspondante
+	 */
+	public static int[] getPluieJournee() {
+
+		
+		Calendar cal = Calendar.getInstance();
+		int jourCourant = cal.get(Calendar.DAY_OF_MONTH);
+		int moisCourant = cal.get(Calendar.MONTH)+1;
+		int anneeCourante = cal.get(Calendar.YEAR);
+		int heureCourante = cal.get(Calendar.HOUR_OF_DAY);
+		int[] pluie = new int[heureCourante+1];
+		for(int i = heureCourante; i >= 0; i--) {
+			Horaire horaire = new Horaire(heureCourante, 0);
+			Date date = new Date(jourCourant,moisCourant, anneeCourante);
+			Donnees donnees = new Donnees(date, horaire);
+			pluie[i] = donnees.getPluie();
+			heureCourante--;
+			
+		}
+		return pluie;
+	}
+	
+	/**
+	 * Retourne les pressions de la journée
+	 * @return tableau d'entiers contenant les pressions de la journée, i correspondant à l'heure correspondante
+	 */
+	public static int[] getPressionJournee() {
+
+		
+		Calendar cal = Calendar.getInstance();
+		int jourCourant = cal.get(Calendar.DAY_OF_MONTH);
+		int moisCourant = cal.get(Calendar.MONTH)+1;
+		int anneeCourante = cal.get(Calendar.YEAR);
+		int heureCourante = cal.get(Calendar.HOUR_OF_DAY);
+		int[] pluie = new int[heureCourante+1];
+		for(int i = heureCourante; i >= 0; i--) {
+			Horaire horaire = new Horaire(heureCourante, 0);
+			Date date = new Date(jourCourant,moisCourant, anneeCourante);
+			Donnees donnees = new Donnees(date, horaire);
+			pluie[i] = donnees.getPression();
+			heureCourante--;
+			
+		}
+		return pluie;
 	}
 	
 	/**
@@ -328,7 +424,7 @@ public class Donnees {
 		    
 		    while ((ligne = fichier.readLine()) != null){
 		    	if(ligne.contains("ventdirection")) {
-		    		directionVent = Integer.parseInt(ligne.split(";")[1]);
+		    		directionVent = (int) Double.parseDouble(ligne.split(";")[1]);
 		    	}
 		    }
 		    
@@ -376,7 +472,7 @@ public class Donnees {
 		    
 		    while ((ligne = fichier.readLine()) != null){
 		    	if(ligne.contains("ressenti")) {
-		    		ressenti = Integer.parseInt(ligne.split(";")[1]);
+		    		ressenti = (int) Double.parseDouble(ligne.split(";")[1]);
 		    	}
 		    }
 		    
@@ -388,9 +484,81 @@ public class Donnees {
 	}
 	
 	/**
+	 * Récupère la valeur correspondant à la pression atmosphérique dans un fichier
+	 * @param nomFichier
+	 * @return la pression sous forme d'int, ou -9999 si la pression n'est pas trouvée
+	 */
+	private static int recupererPression(String nomFichier) {
+		String ligne;
+		int pression = -9999;
+		try {
+		    BufferedReader fichier = new BufferedReader(new FileReader(nomFichier));
+		    
+		    while ((ligne = fichier.readLine()) != null){
+		    	if(ligne.contains("pression")) {
+		    		pression = (int) Double.parseDouble(ligne.split(";")[1]);
+		    	}
+		    }
+		    
+		    fichier.close();
+		} catch (IOException ex) {
+		    System.out.println("Problème accès fichier");
+		}   
+		return pression;
+	}
+	
+	/**
+	 * Récupère la valeur correspondant au co2 dans un fichier
+	 * @param nomFichier
+	 * @return le co2 sous forme d'int, ou -9999 si le co2 n'est pas trouvé
+	 */
+	private static int recupererCO2(String nomFichier) {
+		String ligne;
+		int co2 = -9999;
+		try {
+		    BufferedReader fichier = new BufferedReader(new FileReader(nomFichier));
+		    
+		    while ((ligne = fichier.readLine()) != null){
+		    	if(ligne.contains("co2")) {
+		    		co2 = (int) Double.parseDouble(ligne.split(";")[1]);
+		    	}
+		    }
+		    
+		    fichier.close();
+		} catch (IOException ex) {
+		    System.out.println("Problème accès fichier");
+		}   
+		return co2;
+	}
+	
+	/**
+	 * Récupère la valeur correspondant au ressenti dans un fichier
+	 * @param nomFichier
+	 * @return l'état de pluie sous forme d'int, 1 s'il pleut, 0 s'il pleut pas, ou -1 en cas d'erreur
+	 */
+	private static int recupererPluie(String nomFichier) {
+		String ligne;
+		int pluie = -1;
+		try {
+		    BufferedReader fichier = new BufferedReader(new FileReader(nomFichier));
+		    
+		    while ((ligne = fichier.readLine()) != null){
+		    	if(ligne.contains("pluviometrie")) {
+		    		pluie = (int) Double.parseDouble(ligne.split(";")[1]);
+		    	}
+		    }
+		    
+		    fichier.close();
+		} catch (IOException ex) {
+		    System.out.println("Problème accès fichier");
+		}   
+		return pluie;
+	}
+	
+	/**
 	 * Convertit la direction du vent en int en String
 	 * @param directionVent
-	 * @return La direction sous la forme d'un string sinon "erreur"
+	 * @return La direction sous la forme d'un string sinon "Pas de données"
 	 */
 	private static String convertirDirection(int directionVent) {
 		String directionVentString = "Pas de données  ";
@@ -408,6 +576,25 @@ public class Donnees {
 			directionVentString = "Ouest";
 		}
 		return directionVentString;
+		
+	}
+	
+	/**
+	 * Convertit la pluie en int en String
+	 * @param pluie
+	 * @return L'état de pluie sous la forme d'un string sinon "Pas de données"
+	 */
+	private static String convertirPluie(int pluie) {
+		String pluieString = "Pas de données  ";
+		
+		if(pluie == 0) {
+			pluieString = "Non";
+		}
+		if(pluie == 1) {
+			pluieString = "Oui";
+		}
+
+		return pluieString;
 		
 	}
 	
@@ -465,6 +652,42 @@ public class Donnees {
 	 */
 	public int getTemperature() {
 		return temperature;
+		
+	}
+	
+	/**
+	 * Getter pour la pression amosphérique
+	 * @return la pression atmosphérique
+	 */
+	public int getPression() {
+		return pression;
+		
+	}
+	
+	/**
+	 * Getter pour la température
+	 * @return la température
+	 */
+	public int getPluie() {
+		return pluie;
+		
+	}
+	
+	/**
+	 * Getter pour l'état de la pluie
+	 * @return l'état de la pluie
+	 */
+	public String getPluieString() {
+		return pluieString;
+		
+	}
+	
+	/**
+	 * Getter pour le co2
+	 * @return le co2
+	 */
+	public int getCO2() {
+		return co2;
 		
 	}
 }

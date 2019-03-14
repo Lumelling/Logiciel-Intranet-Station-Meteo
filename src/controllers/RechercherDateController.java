@@ -39,6 +39,15 @@ public class RechercherDateController implements Initializable{
 	Label lbl_ensoleillement;
 	
 	@FXML
+	Label lbl_co2;
+	
+	@FXML
+	Label lbl_pression;
+	
+	@FXML
+	Label lbl_pluie;
+	
+	@FXML
 	Button btn_retour;
 	
 	@FXML
@@ -106,7 +115,18 @@ public class RechercherDateController implements Initializable{
 			} else {
 				lbl_vitessevent.setText(consultationRecherche.getVitesseVent() + "km/h");
 			}
-			lbl_directionvent.setText(consultationRecherche.getDirectionVentString() +"");
+			if (consultationRecherche.getCO2() == -9999) {
+				lbl_co2.setText("Pas de données  ");
+			} else {
+				lbl_co2.setText(consultationRecherche.getCO2() + " ppm");
+			}
+			if (consultationRecherche.getPression() == -9999) {
+				lbl_pression.setText("Pas de données  ");
+			} else {
+				lbl_pression.setText(consultationRecherche.getPression() + " hPA");
+			}
+			lbl_pluie.setText(consultationRecherche.getPluieString());
+			lbl_directionvent.setText(consultationRecherche.getDirectionVentString());
 			
 			if (consultationRecherche.getTauxEnsoleillement() == -9999) {
 				lbl_ensoleillement.setText("Pas de données  ");
@@ -133,6 +153,9 @@ public class RechercherDateController implements Initializable{
 		lbl_vitessevent.setText(consultation.getVitesseVent() + "km/h");
 		lbl_directionvent.setText(consultation.getDirectionVentString() +"");
 		lbl_ensoleillement.setText(consultation.getTauxEnsoleillement() +"%");
+		lbl_pluie.setText(consultation.getPluieString());
+		lbl_co2.setText(consultation.getCO2() +" ppm");
+		lbl_pression.setText(consultation.getPression() +" hPa");
 		btn_retour.setOnAction(this::retourAccueil);
 		btn_recherche.setOnAction(this::recherche);
 	}

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="472.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainController">
    <children>
       <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="600.0">
         <menus>
@@ -20,6 +20,9 @@
                   <MenuItem fx:id="btn_detailsHumidite" mnemonicParsing="false" text="Humidité..." />
                   <MenuItem fx:id="btn_detailsLuminosite" mnemonicParsing="false" text="Luminosité..." />
                   <MenuItem fx:id="btn_detailsVitesseVent" mnemonicParsing="false" text="Vitesse vent..." />
+                  <MenuItem fx:id="btn_detailsCO2" mnemonicParsing="false" text="CO2" />
+                  <MenuItem fx:id="btn_detailsPluie" mnemonicParsing="false" text="Pluie" />
+                  <MenuItem fx:id="btn_detailsPA" mnemonicParsing="false" text="Pression atmosphérique" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Avancé">
@@ -71,6 +74,24 @@
          <children>
             <Label layoutX="14.0" layoutY="11.0" text="Luminosité :" />
             <Label id="lbl_ensoleillement" fx:id="lbl_ensoleillement" layoutX="123.0" layoutY="11.0" text="Nuageux" textFill="#ff1a1ad1" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="329.0" layoutY="278.0" prefHeight="39.0" prefWidth="191.0" style="-fx-border-color: #000000; -fx-border-width: 0.5;">
+         <children>
+            <Label layoutX="14.0" layoutY="11.0" text="CO2 :" />
+            <Label id="lbl_ensoleillement" fx:id="lbl_co2" layoutX="123.0" layoutY="11.0" text="442 ppm" textFill="#ff1a1ad1" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="28.0" layoutY="342.0" prefHeight="39.0" prefWidth="191.0" style="-fx-border-color: #000000; -fx-border-width: 0.5;">
+         <children>
+            <Label layoutX="14.0" layoutY="11.0" text="P. Atmosphérique :" />
+            <Label id="lbl_ensoleillement" fx:id="lbl_pression" layoutX="123.0" layoutY="11.0" text="1024 Pa" textFill="#ff1a1ad1" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="329.0" layoutY="342.0" prefHeight="39.0" prefWidth="191.0" style="-fx-border-color: #000000; -fx-border-width: 0.5;">
+         <children>
+            <Label layoutX="14.0" layoutY="11.0" text="Pluie :" />
+            <Label id="lbl_ensoleillement" fx:id="lbl_pluie" layoutX="123.0" layoutY="11.0" text="Non" textFill="#ff1a1ad1" />
          </children>
       </AnchorPane>
    </children>

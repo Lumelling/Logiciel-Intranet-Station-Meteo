@@ -41,6 +41,15 @@ public class MainController implements Initializable{
 	Label lbl_ensoleillement;
 	
 	@FXML
+	Label lbl_co2;
+	
+	@FXML
+	Label lbl_pression;
+	
+	@FXML
+	Label lbl_pluie;
+	
+	@FXML
 	MenuItem btn_recherche;
 	
 	@FXML
@@ -58,15 +67,24 @@ public class MainController implements Initializable{
 	@FXML
 	MenuItem btn_detailsLuminosite;
 	
+	@FXML
+	MenuItem btn_detailsPA;
+	
+	@FXML
+	MenuItem btn_detailsPluie;
+	
+	@FXML
+	MenuItem btn_detailsCO2;
+	
 	
 	
 	private void ouvrirRecherche(ActionEvent event) {
 		try {
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("../interfaces/RechercheDate.fxml"));
 			Stage stage = new Stage();
-			Scene scene = new Scene(root,600,400);
+			Scene scene = new Scene(root,600,472);
 			stage.setTitle("Logiciel Météo intranet MJC Rodez");
-			stage.getIcons().add(new Image("file:logo_mjc.png"));
+			stage.getIcons().add(new Image("file:icone.png"));
 			stage.setResizable(false);
 			stage.sizeToScene();
 			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
@@ -87,7 +105,73 @@ public class MainController implements Initializable{
 			Stage stage = new Stage();
 			Scene scene = new Scene(root,600,400);
 			stage.setTitle("Logiciel Météo intranet MJC Rodez");
-			stage.getIcons().add(new Image("file:logo_mjc.png"));
+			stage.getIcons().add(new Image("file:icone.png"));
+			stage.setResizable(false);
+			stage.sizeToScene();
+			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setScene(scene);
+			stage.show();
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+
+	private void detailsCO2(ActionEvent event) {
+		try {
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("../interfaces/DetailsCO2.fxml"));
+			
+			Stage stage = new Stage();
+			Scene scene = new Scene(root,600,400);
+			stage.setTitle("Logiciel Météo intranet MJC Rodez");
+			stage.getIcons().add(new Image("file:icone.png"));
+			stage.setResizable(false);
+			stage.sizeToScene();
+			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setScene(scene);
+			stage.show();
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+
+	private void detailsPluie(ActionEvent event) {
+		try {
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("../interfaces/DetailsPluie.fxml"));
+			
+			Stage stage = new Stage();
+			Scene scene = new Scene(root,600,400);
+			stage.setTitle("Logiciel Météo intranet MJC Rodez");
+			stage.getIcons().add(new Image("file:icone.png"));
+			stage.setResizable(false);
+			stage.sizeToScene();
+			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setScene(scene);
+			stage.show();
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+
+	private void detailsPression(ActionEvent event) {
+		try {
+			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("../interfaces/DetailsPression.fxml"));
+			
+			Stage stage = new Stage();
+			Scene scene = new Scene(root,600,400);
+			stage.setTitle("Logiciel Météo intranet MJC Rodez");
+			stage.getIcons().add(new Image("file:icone.png"));
 			stage.setResizable(false);
 			stage.sizeToScene();
 			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
@@ -107,7 +191,7 @@ public class MainController implements Initializable{
 			Stage stage = new Stage();
 			Scene scene = new Scene(root,600,400);
 			stage.setTitle("Logiciel Météo intranet MJC Rodez");
-			stage.getIcons().add(new Image("file:logo_mjc.png"));
+			stage.getIcons().add(new Image("file:icone.png"));
 			stage.setResizable(false);
 			stage.sizeToScene();
 			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
@@ -127,7 +211,7 @@ public class MainController implements Initializable{
 			Stage stage = new Stage();
 			Scene scene = new Scene(root,600,400);
 			stage.setTitle("Logiciel Météo intranet MJC Rodez");
-			stage.getIcons().add(new Image("file:logo_mjc.png"));
+			stage.getIcons().add(new Image("file:icone.png"));
 			stage.setResizable(false);
 			stage.sizeToScene();
 			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
@@ -146,7 +230,7 @@ public class MainController implements Initializable{
 			Stage stage = new Stage();
 			Scene scene = new Scene(root,600,400);
 			stage.setTitle("Logiciel Météo intranet MJC Rodez");
-			stage.getIcons().add(new Image("file:logo_mjc.png"));
+			stage.getIcons().add(new Image("file:icone.png"));
 			stage.setResizable(false);
 			stage.sizeToScene();
 			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
@@ -166,7 +250,7 @@ public class MainController implements Initializable{
 			Stage stage = new Stage();
 			Scene scene = new Scene(root,600,400);
 			stage.setTitle("Logiciel Météo intranet MJC Rodez");
-			stage.getIcons().add(new Image("file:logo_mjc.png"));
+			stage.getIcons().add(new Image("file:icone.png"));
 			stage.setResizable(false);
 			stage.sizeToScene();
 			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
@@ -188,12 +272,18 @@ public class MainController implements Initializable{
 		lbl_vitessevent.setText(consultation.getVitesseVent() + "km/h");
 		lbl_directionvent.setText(consultation.getDirectionVentString() +"");
 		lbl_ensoleillement.setText(consultation.getTauxEnsoleillement() +"%");
+		lbl_pluie.setText(consultation.getPluieString());
+		lbl_co2.setText(consultation.getCO2() +" ppm");
+		lbl_pression.setText(consultation.getPression() +" hPa");
 		btn_recherche.setOnAction(this::ouvrirRecherche);
 		btn_detailsTemperature.setOnAction(this::detailsTemperature);
 		btn_detailsHumidite.setOnAction(this::detailsHumidite);
 		btn_detailsLuminosite.setOnAction(this::detailsEnsoleillement);
 		btn_detailsDirectionVent.setOnAction(this::detailsDirectionVent);
 		btn_detailsVitesseVent.setOnAction(this::detailsVitesseVent); 
+		btn_detailsPluie.setOnAction(this::detailsPluie);
+		btn_detailsCO2.setOnAction(this::detailsCO2);
+		btn_detailsPA.setOnAction(this::detailsPression);
 	}
 }
 	

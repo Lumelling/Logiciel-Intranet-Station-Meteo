@@ -23,12 +23,12 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("../interfaces/Main.fxml"));
-			Scene scene = new Scene(root,600,400);
+			Scene scene = new Scene(root,600,472);
 			scene.getStylesheets().add(getClass().getResource("../interfaces/application.css").toExternalForm());
 			primaryStage.setTitle("Logiciel Météo intranet MJC Rodez");
 			primaryStage.setResizable(false);
 			primaryStage.sizeToScene();
-			primaryStage.getIcons().add(new Image("file:logo_mjc.png"));
+			primaryStage.getIcons().add(new Image("file:icone.png"));
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
