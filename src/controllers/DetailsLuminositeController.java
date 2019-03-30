@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -55,6 +56,12 @@ public class DetailsLuminositeController implements Initializable{
 
 	@FXML
 	TextField box_minute;
+	
+    @FXML
+    private NumberAxis xAxis ;
+
+    @FXML
+    private NumberAxis yAxis ;
 
 	@FXML
 	LineChart<Number, Number> graphique;
@@ -72,7 +79,7 @@ public class DetailsLuminositeController implements Initializable{
 			Date date = new Date(Integer.parseInt(box_jour.getText()), Integer.parseInt(box_mois.getText()), Integer.parseInt(box_annee.getText()));
 			Horaire horaire = null;
 			Donnees consultationRecherche;
-			
+			graphique.setCreateSymbols(false);
 			if(box_minute.getText() != null && !(box_minute.getText().isEmpty())) {
 				horaire = new Horaire(Integer.parseInt(box_heure.getText()), Integer.parseInt(box_minute.getText()));
 				
@@ -106,8 +113,8 @@ public class DetailsLuminositeController implements Initializable{
 
 		XYChart.Series<Number,Number> series = new XYChart.Series<>();
 		series.setName("Ensoleillement");
-
-		int[] ensoleillement = Donnees.getTemperatureJournee();
+		graphique.setCreateSymbols(false);
+		int[] ensoleillement = Donnees.getEnsoleillementJournee();
 		for(int i = 0;i < ensoleillement.length;i++) {
 			series.getData().add(new XYChart.Data<>(i,ensoleillement[i]));
 		}

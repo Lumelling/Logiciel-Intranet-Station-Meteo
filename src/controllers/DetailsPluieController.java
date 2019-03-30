@@ -103,7 +103,7 @@ public class DetailsPluieController implements Initializable{
 
 		XYChart.Series<Number,Number> series = new XYChart.Series<>();
 		series.setName("Pluie");
-
+		graphique.setCreateSymbols(false);
 		int[] pluie = Donnees.getPluieJournee();
 		for(int i = 0;i < pluie.length;i++) {
 			series.getData().add(new XYChart.Data<>(i,pluie[i]));

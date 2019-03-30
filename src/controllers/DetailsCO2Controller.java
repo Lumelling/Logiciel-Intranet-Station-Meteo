@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -55,6 +56,12 @@ public class DetailsCO2Controller implements Initializable{
 
 	@FXML
 	TextField box_minute;
+	
+    @FXML
+    private NumberAxis xAxis ;
+
+    @FXML
+    private NumberAxis yAxis ;
 
 	@FXML
 	LineChart<Number, Number> graphique;
@@ -71,7 +78,7 @@ public class DetailsCO2Controller implements Initializable{
 			Date date = new Date(Integer.parseInt(box_jour.getText()), Integer.parseInt(box_mois.getText()), Integer.parseInt(box_annee.getText()));
 			Horaire horaire = null;
 			Donnees consultationRecherche;
-			
+			graphique.setCreateSymbols(false);
 			if(box_minute.getText() != null && !(box_minute.getText().isEmpty())) {
 				horaire = new Horaire(Integer.parseInt(box_heure.getText()), Integer.parseInt(box_minute.getText()));
 				
@@ -105,11 +112,15 @@ public class DetailsCO2Controller implements Initializable{
 
 		XYChart.Series<Number,Number> series = new XYChart.Series<>();
 		series.setName("CO2");
-
+		graphique.setCreateSymbols(false);
 		int[] co2 = Donnees.getCO2Journee();
+		
+		int[] tri = co2;
 		for(int i = 0;i < co2.length;i++) {
 			series.getData().add(new XYChart.Data<>(i,co2[i]));
 		}
+		yAxis.setLowerBound(tri[0]-100);
+		yAxis.setUpperBound(tri[tri.length-1]+100);
 		graphique.getData().add(series);
 
 	}

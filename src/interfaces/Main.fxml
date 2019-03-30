@@ -20,9 +20,9 @@
                   <MenuItem fx:id="btn_detailsHumidite" mnemonicParsing="false" text="Humidité..." />
                   <MenuItem fx:id="btn_detailsLuminosite" mnemonicParsing="false" text="Luminosité..." />
                   <MenuItem fx:id="btn_detailsVitesseVent" mnemonicParsing="false" text="Vitesse vent..." />
-                  <MenuItem fx:id="btn_detailsCO2" mnemonicParsing="false" text="CO2" />
-                  <MenuItem fx:id="btn_detailsPluie" mnemonicParsing="false" text="Pluie" />
-                  <MenuItem fx:id="btn_detailsPA" mnemonicParsing="false" text="Pression atmosphérique" />
+                  <MenuItem fx:id="btn_detailsCO2" mnemonicParsing="false" text="CO2..." />
+                  <MenuItem fx:id="btn_detailsPluie" mnemonicParsing="false" text="Pluie..." />
+                  <MenuItem fx:id="btn_detailsPA" mnemonicParsing="false" text="Pression atmosphérique..." />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Avancé">

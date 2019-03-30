@@ -88,7 +88,7 @@ public class Trame {
 	}
 	
 	/**
-	 * Méthode qui contient le téléchargement du fichier grâce à l'url pour une date dibbée
+	 * Méthode qui contient le téléchargement du fichier grâce à l'url pour une date donnée
 	 * @param date 
 	 * @param horaire
 	 */
@@ -96,7 +96,7 @@ public class Trame {
 	
 		URL website;
 		try {
-			website = new URL("http://www.meteo.mjcrodez.fr/pages/getInfoFic.php?date=" + date.toString());//?date=2018-12-01
+			website = new URL("http://www.meteo.mjcrodez.fr/pages/getInfoFic.php?date=" + date.toString());//?date=01-12-2018
 			ReadableByteChannel rbc = Channels.newChannel(website.openStream());
 			FileOutputStream fos = new FileOutputStream("releves/" + nomFichier); 
 			fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);

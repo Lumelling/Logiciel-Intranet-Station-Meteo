@@ -177,21 +177,25 @@ public class Donnees {
 	 */
 	public static int[] getTemperatureJournee() {
 
-		
+		//récupère la date courante
 		Calendar cal = Calendar.getInstance();
 		int jourCourant = cal.get(Calendar.DAY_OF_MONTH);
 		int moisCourant = cal.get(Calendar.MONTH)+1;
 		int anneeCourante = cal.get(Calendar.YEAR);
 		int heureCourante = cal.get(Calendar.HOUR_OF_DAY);
+		
+		//tableau qui stockera les températures de la journée
 		int[] temperature = new int[heureCourante+1];
+		
+		//boucle pour récupérer les valeurs et les stocker dans le tableau
 		for(int i = heureCourante; i >= 0; i--) {
 			Horaire horaire = new Horaire(heureCourante, 0);
 			Date date = new Date(jourCourant,moisCourant, anneeCourante);
 			Donnees donnees = new Donnees(date, horaire);
 			temperature[i] = donnees.getTemperature();
 			heureCourante--;
-			
 		}
+		
 		return temperature;
 	}
 	
@@ -350,8 +354,11 @@ public class Donnees {
 		try {
 		    BufferedReader fichier = new BufferedReader(new FileReader(nomFichier));
 		    
+		    //on lit le fichier ligne par ligne tant qu'il n'est pas fini
 		    while ((ligne = fichier.readLine()) != null){
+		    	//si la ligne contient "temperature"
 		    	if(ligne.contains("temperature")) {
+		    		//alors on range la valeur associée dans la variable temperature
 		    		temperature = (int ) Double.parseDouble(ligne.split(";")[1]);
 		    	}
 		    }

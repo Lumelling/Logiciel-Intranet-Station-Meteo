@@ -36,10 +36,10 @@
       <Label layoutX="27.0" layoutY="157.0" text="Saisir une heure :" />
       <LineChart fx:id="graphique" horizontalZeroLineVisible="false" layoutX="280.0" layoutY="155.0" prefHeight="230.0" prefWidth="304.0">
          <xAxis>
-            <NumberAxis autoRanging="false" label="Heure" minorTickCount="3" prefHeight="32.0" prefWidth="228.0" side="BOTTOM" tickLabelGap="1.0" tickUnit="3.0" upperBound="23.0" />
+            <NumberAxis fx:id="xAxis" autoRanging="false" label="Heure" minorTickCount="3" prefHeight="32.0" prefWidth="228.0" side="BOTTOM" tickLabelGap="1.0" tickUnit="3.0" upperBound="23.0" />
          </xAxis>
          <yAxis>
-            <NumberAxis autoRanging="false" label="Température" lowerBound="-20.0" minorTickCount="0" prefHeight="153.0" prefWidth="37.0" side="LEFT" upperBound="50.0" />
+            <NumberAxis fx:id="yAxis" autoRanging="false" label="Température" lowerBound="-20.0" minorTickCount="0" prefHeight="153.0" prefWidth="37.0" side="LEFT" upperBound="50.0" />
          </yAxis>
       </LineChart>
       <Label layoutX="363.0" layoutY="125.0" text="Température aujourd'hui :" />

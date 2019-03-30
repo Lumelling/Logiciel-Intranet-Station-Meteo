@@ -9,12 +9,9 @@ public class Date {
         
         /**
          * exception levée si la date est invalide
-         * est incorrecte
          */
         public static class ErreurDateInvalide extends Exception {
-    
-    	    /** TODO commenter le rôle de ce champ (attribut, rôle d'association) */
-    	    private static final long serialVersionUID = 1L;	
+			private static final long serialVersionUID = -1450906119326051820L;
         };
 	
 	/** Attribut contenant le jour */
@@ -54,14 +51,11 @@ public class Date {
 	 */
 	public void estValide() throws ErreurDateInvalide{
 		
+		
 		if(this.mois < 1 || this.mois > 12) {
 			throw new ErreurDateInvalide();
 		}
 
-		if (this.mois < 1 || this.mois > 12) {
-			throw new ErreurDateInvalide();
-		}
-		
 		if(this.annee < 0) {
 			throw new ErreurDateInvalide();
 		}

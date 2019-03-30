@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -56,6 +57,12 @@ public class DetailsHumiditeController implements Initializable{
 
 	@FXML
 	TextField box_minute;
+	
+    @FXML
+    private NumberAxis xAxis ;
+
+    @FXML
+    private NumberAxis yAxis ;
 
 	@FXML
 	LineChart<Number, Number> graphique;
@@ -107,7 +114,7 @@ public class DetailsHumiditeController implements Initializable{
 
 		XYChart.Series<Number,Number> series = new XYChart.Series<>();
 		series.setName("Humidite");
-
+		graphique.setCreateSymbols(false);
 		int[] humidite = Donnees.getHumiditeJournee();
 		for(int i = 0;i < humidite.length;i++) {
 			series.getData().add(new XYChart.Data<>(i,humidite[i]));

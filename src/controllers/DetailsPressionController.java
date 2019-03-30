@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -55,6 +56,12 @@ public class DetailsPressionController implements Initializable{
 
 	@FXML
 	TextField box_minute;
+	
+    @FXML
+    private NumberAxis xAxis ;
+
+    @FXML
+    private NumberAxis yAxis ;
 
 	@FXML
 	LineChart<Number, Number> graphique;
@@ -105,11 +112,14 @@ public class DetailsPressionController implements Initializable{
 
 		XYChart.Series<Number,Number> series = new XYChart.Series<>();
 		series.setName("Pression");
-
+		graphique.setCreateSymbols(false);
 		int[] pression = Donnees.getPressionJournee();
+		int[] tri = pression;
 		for(int i = 0;i < pression.length;i++) {
 			series.getData().add(new XYChart.Data<>(i,pression[i]));
 		}
+		yAxis.setLowerBound(tri[0]-100);
+		yAxis.setUpperBound(tri[tri.length-1]+100);
 		graphique.getData().add(series);
 
 	}

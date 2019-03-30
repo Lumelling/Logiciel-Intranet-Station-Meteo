@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -55,6 +56,12 @@ public class DetailsVitesseVentController implements Initializable{
 
 	@FXML
 	TextField box_minute;
+	
+    @FXML
+    private NumberAxis xAxis ;
+
+    @FXML
+    private NumberAxis yAxis ;
 
 	@FXML
 	LineChart<Number, Number> graphique;
@@ -106,11 +113,14 @@ public class DetailsVitesseVentController implements Initializable{
 
 		XYChart.Series<Number,Number> series = new XYChart.Series<>();
 		series.setName("Vitesse du vent");
-
+		graphique.setCreateSymbols(false);
 		int[] vitesse = Donnees.getVitesseVentJournee();
+		int[] tri = vitesse;
 		for(int i = 0;i < vitesse.length;i++) {
 			series.getData().add(new XYChart.Data<>(i,vitesse[i]));
 		}
+		yAxis.setLowerBound(tri[0]-20);
+		yAxis.setUpperBound(tri[tri.length-1]+20);
 		graphique.getData().add(series);
 
 	}

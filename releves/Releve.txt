@@ -1,9 +1,0 @@
-temperature;21
-ressenti;20
-humiditee;37
-ventvitesse;2
-ventdirection;160
-ensoleillement;5
-co2;9999
-pression;55
-pluviometrie;0

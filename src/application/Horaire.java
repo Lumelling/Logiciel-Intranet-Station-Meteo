@@ -10,12 +10,11 @@ public class Horaire {
 
         /**
          * exception levée si l'horaire est invalide
-         * est incorrecte
          */
         public static class ErreurHoraireInvalide extends Exception {
 
-	    /** TODO commenter le rôle de ce champ (attribut, rôle d'association) */
-	    private static final long serialVersionUID = 1L;	
+			private static final long serialVersionUID = -5919640939066247609L;
+
         };
     
 	/** Attribut contenant l'heure */
